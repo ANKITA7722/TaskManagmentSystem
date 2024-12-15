@@ -1,259 +1,623 @@
+/* General Layout Styles */
 body {
-    width: 100%;
-    background: whitesmoke;
-    position: relative;
-    display: flex;
-}
-
-#sidebar {
-    background-color: rgb(226, 176, 176);
-    width: 300px;
-    height: 100%;
-    position: fixed;
-    left: 0;
-    z-index: 0;
-
-}
-
-
-#ShowData {
-    width: calc(100% - 300px);
-    margin-left: 300px;
-    position: relative;
-}
-
-#interface .navigation {
-    width: 200%;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: white;
-    padding: 15px 30px;
-    border-bottom: 3px solid rgb(212, 34, 173);
-    position: fixed;
-    width: calc(100% - 300px);
-
-}
-
-#interface .navigation .search {
-    display: flex;
-    align-items: center;
-    border: 1px solid rgb(175, 172, 172);
-    border-radius: 3px;
-    justify-content: flex-start;
-    padding: 10px 14px;
-}
-
-#interface .navigation .search input {
-    border: none;
-    outline: none;
-    font-size: 14px;
-}
-
-#interface .navigation .search i {
-    margin-right: 14px;
-}
-
-#interface .navigation .profile {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-}
-
-#interface .navigation .profile i {
-    margin-right: 20px;
-    font-size: 19px;
-    font-weight: 400px;
-}
-
-#interface .navigation .profile img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50px;
-}
-
-.n1 {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-#menu-btn {
-    color: black;
-    font-size: 20px;
-    cursor: pointer;
-    margin-right: 20px;
-    display: none;
-}
-
-.i-name {
-    color: gray;
-    padding: 30px 30px 0 30px;
-    font-size: 24px;
-    font-weight: 700px;
-    margin-top: 70px;
-}
-
-.values {
-    padding: 30px;
-    display: flex;
-    justify-content: center; /* Center the items */
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px; /* Adds space between the items */
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.values .val-box {
-    background-color: white;
-    flex: 1 1 150px; /* Flexible width with a minimum base of 150px */
-    max-width: 250px; /* Sets a maximum width for larger screens */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    background: linear-gradient(135deg, #111012, #2575fc); 
+  }
+  
+  h1 {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 36px;
+    color: #333;
+  }
+  
+  /* Sidebar Styling */
+  #sidebar {
+    width: 250px; /* Fixed width for sidebar */
+    background-color: #2c3e50;
+    color: white;
     padding: 20px;
-    border-radius: 5px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
+    gap: 15px;
     align-items: center;
-    margin: 10px; /* Adds margin between cards */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    transition: transform 0.3s; /* Smooth transition for hover effect */
-}
-
-.values .val-box:hover {
-    transform: translateY(-5px); /* Slight lift on hover */
-}
-
-.values .val-box i {
-    font-size: 25px;
-    width: 65px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 50%;
+    text-transform: capitalize;
+  }
+  
+  #sidebar h3 {
+    font-size: 24px;
     text-align: center;
-    color: rgb(16, 16, 16);
-    background-color: rgb(210, 27, 79);
-    margin-right: 15px;
-}
-
-.values .val-box h3 {
+    margin-bottom: 30px;
+  }
+  
+  #sidebar h4 {
+    cursor: pointer;
+    color: #ecf0f1;
     font-size: 18px;
-    font-weight: 600;
-}
-
-.values .val-box span {
-    font-size: 15px;
-    color: black;
-    text-transform: capitalize;
-}
-
-/* Board Styling */
-.board {
+    margin: 10px 0;
+    transition: color 0.3s ease;
+  }
+  
+  #sidebar h4:hover {
+    color: #1abc9c;
+  }
+  
+  /* Main Content Section */
+  #ShowData {
+    margin-left: 250px; /* To make space for the sidebar */
+    padding: 20px;
+    width: calc(100% - 250px); /* Adjust width based on sidebar width */
+    min-height: 100vh; /* Ensures the content area stretches full height */
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  #ShowData h3 {
     text-align: center;
-    margin-top: 50px;
-    text-transform: capitalize;
-    border: 1px solid rgb(160, 151, 151);
-    width: 100%;
-    margin: 50px auto;
-}
+    font-size: 24px;
+    color: #333;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    /* Make sidebar and main content stack on small screens */
+    #sidebar {
+      width: 100%;
+      position: relative;
+      padding: 10px;
+      gap: 10px;
+      
+    }
+  
+    #sidebar h3 {
+      font-size: 20px;
+    }
+  
+    #sidebar h4 {
+      font-size: 16px;
+    }
+  
+    #ShowData {
+      margin-left: 0; /* Remove left margin for mobile */
+      width: 100%;
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 28px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Adjust font sizes and layout for very small screens */
+    h1 {
+      font-size: 24px;
+    }
+  
+    #sidebar h3 {
+      font-size: 18px;
+    }
+  
+    #sidebar h4 {
+      font-size: 14px;
+    }
+  
+    #ShowData h3 {
+      font-size: 20px;
+    }
+  }
+  
 
-.board table {
-    width: 100%;
-    border-collapse: collapse; /* Ensures no gaps between cells */
-}
 
-.board table tr th {
-    background-color: antiquewhite;
-    color: rgb(63, 62, 62);
+
+
+
+  /* Heading Styling */
+#adminh1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif; /* Use a modern font */
+    font-size: 48px;
+    color: #fff; /* White text color */
+    background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%); /* Gradient background */
+    -webkit-background-clip: text; /* Clip background to text */
+    background-clip: text;
     padding: 10px;
     text-transform: uppercase;
-}
+    letter-spacing: 3px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3), 0 0 25px rgba(0, 0, 0, 0.3), 0 0 5px rgba(0, 0, 0, 0.3);
+    animation: pulse 2s infinite; /* Adding animation effect */
+    margin-left: 100px;
+  }
+  
+  /* Animation Effect */
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      color: #fff;
+    }
+    50% {
+      transform: scale(1.05);
+      color: #0b0c0c; /* Change color during animation */
+    }
+    100% {
+      transform: scale(1);
+      color: #fff;
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 36px; /* Smaller font size on smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    h1 {
+      font-size: 28px; /* Further reduction for very small screens */
+    }
+  }
+  
 
-.board table tr td {
-    padding: 10px;
+/* ++++++++++++++++++++++++++++++++ */
+/* registration page */
+
+
+  .RegParent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url(../images/darklaptotp.jpg); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+    
+.rchild {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    color: white;
+  }
+  
+  
+  .rchild h1 {
+    margin-bottom: 20px;
+    color:white;
     text-align: center;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .values {
-        justify-content: center; /* Center items on smaller screens */
-    }
-
-    .values .val-box {
-        flex: 1 1 100%; /* Allow full width for each box */
-        max-width: 100%;
-    }
-}
-
-/* input{
-    -webkit-appearance: none;
-    visibility: hidden;
-    display: none;
-}
-span{
-    position: absolute;
-    right: -40px;
-    top: 30px;
-    font-size: 25px;
-    border-radius: 3px;
-    color: aqua;
-    padding: 3px 8px;
+  }
+  
+  
+  .rchild input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  
+  .rchild button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: blue;
+    font-size: 16px;
+  }
+  
+  
+  .rchild button:hover {
+    background-color: #0056b3;
+  }
+  
+  .rchild button:active {
+    background-color: #004085;
+  }
+  
+  /* Styling for the homeContainer */
+.homeContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image:url(../images/darklaptotp.jpg) ; /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  
+  /* White text styling */
+  .homeContainer h1 {
+    color: white;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Optional: text shadow for better readability */
+  }
+  /* ===================================== */
+  /* Container and Card Styling */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Table Styling */
+  table {
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 12px;
+    font-size: 1.1rem;
+  }
+  
+  th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  td {
+    background-color: #f8f9fa;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Button Styling */
+  button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .table th, .table td {
+      font-size: 0.9rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  /* display */
+  /* Container and Card Styling */
+.container {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Table Styling */
+  table {
+    background-color: #fff;
+    border-radius: 8px;
+  }
+  
+  th, td {
+    text-align: center;
+    padding: 12px;
+    font-size: 1.1rem;
+  }
+  
+  th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  td {
+    background-color: #f8f9fa;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Button Styling (Optional for Actions) */
+  button {
+    padding: 8px 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  /* Responsiveness */
+  @media (max-width: 768px) {
+    .table th, .table td {
+      font-size: 0.9rem;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  /* ========================================= */
+  /* Asigntask.css */
 
+/* Center the page and apply background */
+.task-page {
+  margin-top: 50px;
+  background-color: #f0f2f5; /* Light background color */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#bars{
-    background-color: red;
 
-}
-#check:checked ~ #menu{
-    transform: translateX(0);
-}
-#check:checked ~ #menu #bars{
-    display: none;
-    align-items: self-start;
-} */
-
-@media screen and (max-width: 450px) {
-    #menu {
-
-        width: 250px;
-        position: fixed;
-        left: -270px;
-    }
-
-    #menu.active {
-        left: 0px;
-    }
-
-    #interface {
-        width: 100%;
-        margin-left: 0px;
-        display: inline-block;
-        display: none;
-
-    }
-
-    #menu.active ~ #interface {
-        width: calc(100% - 270px);
-        margin-left: 270px;
-    }
-
-    #interface .navigation {
-        width: 100%;
-    }
-
-    .values {
-        justify-content: flex-start;
-    }
-
-    .values .val-box {
-        padding: 16px 20px;
-        margin: 10px 20px 10px 0px;
-
-    }
-
+/* Task card styling */
+.task-card {
+  background-color: white;
+  padding: 40px;
+  border-radius: 12px; /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
 }
 
+/* Title styling */
+.task-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Form styling */
+.ant-form-item {
+  margin-bottom: 20px; /* Add some space between form fields */
+}
+
+/* Button styling */
+.ant-btn-primary {
+  background-color: #28a745;
+  border-color: #28a745;
+  font-weight: 500;
+}
+
+.ant-btn-primary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+/* Input and Textarea styling */
+.ant-input,
+.ant-input-textarea {
+  border-radius: 8px;
+}
+
+/* Success and Error messages */
+.ant-message-success {
+  background-color: #28a745;
+  color: white;
+}
+
+.ant-message-error {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .task-card {
+      padding: 20px;
+  }
+
+  .task-title {
+      font-size: 20px;
+  }
+}
+/* ================================================= */
+/* Overall container styling */
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full-screen height */
+  background: linear-gradient(135deg, #111012, #2575fc); /* Gradient background */
+  color: #fff;
+}
+
+/* Form wrapper styling */
+.admin-form-wrapper {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+  padding: 40px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  color: #333;
+}
+
+/* Title styling */
+.admin-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+/* Form input styling */
+.form-input {
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 10px;
+  font-size: 16px;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Button container */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* Login button styling */
+.login-button {
+  background-color: #080808;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #100a16;
+}
+/* ============================================ */
+/* Overall container styling */
+/* Full page container */
+#home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298); /* Blue gradient background */
+  color: #fff;
+  font-family: "Arial", sans-serif;
+}
+
+/* Home wrapper styling */
+.home-wrapper {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  max-width: 500px;
+  width: 90%;
+}
+
+/* Title styling */
+.home-title {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #2a5298;
+}
+
+/* Subtitle styling */
+.home-subtitle {
+  font-size: 16px;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+/* Buttons styling */
+.home-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 45%;
+}
+
+/* Admin button */
+.admin-button {
+  background-color: #2a5298;
+  color: white;
+}
+
+.admin-button:hover {
+  background-color: #1e3c72;
+}
+
+/* Registration button */
+.register-button {
+  background-color: #1e3c72;
+  color: white;
+}
+
+.register-button:hover {
+  background-color: #2a5298;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .home-title {
+    font-size: 24px;
+  }
+
+  .home-subtitle {
+    font-size: 14px;
+  }
+
+  .home-button {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+}

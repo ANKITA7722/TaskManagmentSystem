@@ -1,6 +1,8 @@
 
 const EmpModel = require("../models/empModel");
 const taskModel = require("../models/taskModel");
+
+
 const userRegistration = async (req, res) => {
   const { name, email, password } = req.body;
   const empdata = await EmpModel.create({
@@ -35,29 +37,33 @@ const displayUsersData = async (req, res) => {
 }
 
 const display = async (req, res) => {
-  const users = await EmpModel.find(); // Fetch all users
   try {
-
+    const users = await EmpModel.find(); // Fetch all users
+    
     const responseData = await Promise.all(
       users.map(async (user) => {
-        const tasks = await taskModel.find({ userId: user._id }); // Fetch tasks for the user
+        const tasks = await taskModel.find({ userId: user._id }); // Fetch tasks for each user
+        
         return {
           _id: user._id,
           name: user.name,
           email: user.email,
           tasks: tasks.map((task) => ({
-            title: task.title,
+            title: task._id.title,
             description: task.description,
           })),
         };
       })
     );
+
+    // Send the structured response
     res.status(200).json(responseData);
   } catch (error) {
     console.error("Error fetching data:", error.message);
     res.status(500).json({ error: "Internal Server Error" });
   }
-}
+};
+
 
 
 module.exports = {

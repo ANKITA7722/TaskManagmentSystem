@@ -1,64 +1,93 @@
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import axios from 'axios';
 import React, { useState } from 'react';
+import { Form, Input, Button, Row, Col, message, Spin } from 'antd'; // Import required Ant Design components
+import axios from 'axios';
+import "../css/style.css";
 
 const Task = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [loading, setLoading] = useState(false); // For showing loading spinner
 
-    const handleSubmit = async () => {
-        const api = "http://localhost:8080/tasks/createtask";
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!title || !description) {
+            message.error("Please fill in all fields.");
+            return;
+        }
 
         const taskData = {
             title,
             description,
         };
 
+        const token = localStorage.getItem('authToken'); 
         try {
-            const response = await axios.post(api, taskData);
-            console.log(response.data);
+            setLoading(true);
+            const response = await axios.post(
+                "http://localhost:8080/tasks/createtask", 
+                taskData, 
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}` 
+                    }
+                }
+            );
 
-            if (response.status === 201) {
-                alert("Task saved successfully!");
-                setTitle("");
-                setDescription("");
+            message.success("Task created successfully!");
+            setTitle(""); // Clear form after successful submission
+            setDescription(""); // Clear form after successful submission
+            setLoading(false);
+        } catch (err) {
+            setLoading(false);
+            if (err.response) {
+                message.error(`Error: ${err.response.data}`);
+            } else if (err.request) {
+                message.error("Error: No response from server.");
             } else {
-                // alert("Error saving task: " + response.data.message);
-                alert("Task saved successfully!");
+                message.error(`Error: ${err.message}`);
             }
-        } catch (error) {
-            console.error("Error saving task:", error);
-            alert("An error occurred while saving the task.");
         }
     };
 
     return (
-        <>
-            <Form>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                    <Form.Label>Task Title</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="Enter title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Task Description</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        rows={3}
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </Form.Group>
-                <Button variant="success" onClick={handleSubmit}>
-                    Save Task
-                </Button>
-            </Form>
-        </>
+        <Row justify="center" className="task-page">
+            <Col xs={24} sm={20} md={16} lg={12}>
+                <div className="task-card">
+                    <h2 className="task-title">Create New Task</h2>
+
+                    <Form onSubmitCapture={handleSubmit} layout="vertical">
+                        <Form.Item label="Task Title" required>
+                            <Input
+                                placeholder="Enter task title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </Form.Item>
+
+                        <Form.Item label="Task Description" required>
+                            <Input.TextArea
+                                rows={4}
+                                placeholder="Enter task description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </Form.Item>
+
+                        <Form.Item>
+                            <Button 
+                                type="primary" 
+                                htmlType="submit" 
+                                block
+                                loading={loading} // Show loading spinner while submitting
+                            >
+                                Save Task
+                            </Button>
+                        </Form.Item>
+                    </Form>
+                </div>
+            </Col>
+        </Row>
     );
 };
 

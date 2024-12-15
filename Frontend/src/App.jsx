@@ -8,6 +8,8 @@ import AdminPanal from './pages/AdminPanal';
 import UserTable from './pages/UserTable';
 import Task from './pages/AsignTask';
 import DisplayData from './pages/Display';
+import ViewData from './pages/ViewTask';
+
 
 const App = () => (
   <BrowserRouter>
@@ -18,9 +20,13 @@ const App = () => (
       <Route path="/adminpanal" element={<AdminPanal />} />
       <Route path="/usertable" element={<UserTable />} />
       <Route path="/task" element={<Task />} />
-      <Route path="/displaydata" element={<DisplayData />} />
+      <Route path="/display" element={<DisplayData />} />
+
+      <Route path="/viewdata" element={<ViewData />} />
       <Route path="/login" element={<Login />} />
       <Route path="/registration" element={<Registration />} />
+
+      
      
     </Routes>
   </BrowserRouter>

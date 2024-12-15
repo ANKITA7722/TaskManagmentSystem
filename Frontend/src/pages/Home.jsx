@@ -1,18 +1,40 @@
-import React from 'react';
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/style.css" // Custom CSS for styling
 
-const Home=()=>{
-    const navigate = useNavigate();
+const Home = () => {
+  const navigate = useNavigate();
 
-  
+  return (
+    <div id="home-container">
+      <div className="home-wrapper">
+        <center>
+          <h1 className="home-title">Task Management System</h1>
+          <p className="home-subtitle">
+            Manage your tasks efficiently and effectively with our system.
+          </p>
+          <div className="button-group">
+            <button
+              className="home-button admin-button"
+              onClick={() => {
+                navigate("/admin");
+              }}
+            >
+              Admin Login
+            </button>
+            <button
+              className="home-button register-button"
+              onClick={() => {
+                navigate("/registration");
+              }}
+            >
+              Registration Login
+            </button>
+          </div>
+        </center>
+      </div>
+    </div>
+  );
+};
 
-    return(
-        <>
-        <h1>Task Managment System</h1>
-        <button onClick={()=>{navigate("/admin")}}>  AdminLogin</button>
-        <button onClick={()=>{navigate("/login")}}>  user Login</button>
-        <button onClick={()=>{navigate("/registration")}}> Registration Login</button>
-        </>
-    )
-}
 export default Home;

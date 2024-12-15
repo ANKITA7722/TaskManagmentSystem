@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Table } from "react-bootstrap";
+import { Table, Container, Card } from "react-bootstrap";
 
 const DisplayData = () => {
   const [users, setUsers] = useState([]);
@@ -27,37 +27,39 @@ const DisplayData = () => {
   }, []);
 
   return (
-    <div className="container mt-4">
-      <h2>User Data</h2>
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Email</th>
-            <th>Task Titles</th>
-            <th>Task Descriptions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
-                {user.tasks.map((task, index) => (
-                  <div key={index}>{task.title}</div>
-                ))}
-              </td>
-              <td>
-                {user.tasks.map((task, index) => (
-                  <div key={index}>{task.description}</div>
-                ))}
-              </td>
+    <Container className="mt-5">
+      <h2 className="text-center mb-4" style={{ color: '#333' }}>User Data with Tasks</h2>
+      <Card className="shadow-lg p-4">
+        <Table striped bordered hover responsive="sm">
+          <thead>
+            <tr>
+              <th>Username</th>
+              <th>Email</th>
+              <th>Task Titles</th>
+              <th>Task Descriptions</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </div>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>
+                  {user.tasks.map((task, index) => (
+                    <div key={index}>{task.title}</div>
+                  ))}
+                </td>
+                <td>
+                  {user.tasks.map((task, index) => (
+                    <div key={index}>{task.description}</div>
+                  ))}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Card>
+    </Container>
   );
 };
 
