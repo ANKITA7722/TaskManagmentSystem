@@ -1,0 +1,259 @@
+body {
+    width: 100%;
+    background: whitesmoke;
+    position: relative;
+    display: flex;
+}
+
+#sidebar {
+    background-color: rgb(226, 176, 176);
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 0;
+
+}
+
+
+#ShowData {
+    width: calc(100% - 300px);
+    margin-left: 300px;
+    position: relative;
+}
+
+#interface .navigation {
+    width: 200%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    padding: 15px 30px;
+    border-bottom: 3px solid rgb(212, 34, 173);
+    position: fixed;
+    width: calc(100% - 300px);
+
+}
+
+#interface .navigation .search {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(175, 172, 172);
+    border-radius: 3px;
+    justify-content: flex-start;
+    padding: 10px 14px;
+}
+
+#interface .navigation .search input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+#interface .navigation .search i {
+    margin-right: 14px;
+}
+
+#interface .navigation .profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+#interface .navigation .profile i {
+    margin-right: 20px;
+    font-size: 19px;
+    font-weight: 400px;
+}
+
+#interface .navigation .profile img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.n1 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#menu-btn {
+    color: black;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 20px;
+    display: none;
+}
+
+.i-name {
+    color: gray;
+    padding: 30px 30px 0 30px;
+    font-size: 24px;
+    font-weight: 700px;
+    margin-top: 70px;
+}
+
+.values {
+    padding: 30px;
+    display: flex;
+    justify-content: center; /* Center the items */
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px; /* Adds space between the items */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.values .val-box {
+    background-color: white;
+    flex: 1 1 150px; /* Flexible width with a minimum base of 150px */
+    max-width: 250px; /* Sets a maximum width for larger screens */
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 10px; /* Adds margin between cards */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    transition: transform 0.3s; /* Smooth transition for hover effect */
+}
+
+.values .val-box:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+}
+
+.values .val-box i {
+    font-size: 25px;
+    width: 65px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    color: rgb(16, 16, 16);
+    background-color: rgb(210, 27, 79);
+    margin-right: 15px;
+}
+
+.values .val-box h3 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.values .val-box span {
+    font-size: 15px;
+    color: black;
+    text-transform: capitalize;
+}
+
+/* Board Styling */
+.board {
+    text-align: center;
+    margin-top: 50px;
+    text-transform: capitalize;
+    border: 1px solid rgb(160, 151, 151);
+    width: 100%;
+    margin: 50px auto;
+}
+
+.board table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures no gaps between cells */
+}
+
+.board table tr th {
+    background-color: antiquewhite;
+    color: rgb(63, 62, 62);
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.board table tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .values {
+        justify-content: center; /* Center items on smaller screens */
+    }
+
+    .values .val-box {
+        flex: 1 1 100%; /* Allow full width for each box */
+        max-width: 100%;
+    }
+}
+
+/* input{
+    -webkit-appearance: none;
+    visibility: hidden;
+    display: none;
+}
+span{
+    position: absolute;
+    right: -40px;
+    top: 30px;
+    font-size: 25px;
+    border-radius: 3px;
+    color: aqua;
+    padding: 3px 8px;
+    cursor: pointer;
+    background-color: blue;
+
+}
+#bars{
+    background-color: red;
+
+}
+#check:checked ~ #menu{
+    transform: translateX(0);
+}
+#check:checked ~ #menu #bars{
+    display: none;
+    align-items: self-start;
+} */
+
+@media screen and (max-width: 450px) {
+    #menu {
+
+        width: 250px;
+        position: fixed;
+        left: -270px;
+    }
+
+    #menu.active {
+        left: 0px;
+    }
+
+    #interface {
+        width: 100%;
+        margin-left: 0px;
+        display: inline-block;
+        display: none;
+
+    }
+
+    #menu.active ~ #interface {
+        width: calc(100% - 270px);
+        margin-left: 270px;
+    }
+
+    #interface .navigation {
+        width: 100%;
+    }
+
+    .values {
+        justify-content: flex-start;
+    }
+
+    .values .val-box {
+        padding: 16px 20px;
+        margin: 10px 20px 10px 0px;
+
+    }
+
+}
+
